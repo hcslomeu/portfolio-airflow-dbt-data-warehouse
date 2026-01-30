@@ -44,3 +44,19 @@ Runtime Error
 [0m14:37:36.331339 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ce12f00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10462adb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d69bf20>]}
 [0m14:37:36.331617 [debug] [MainThread]: Flushing usage events
 [0m14:37:36.815002 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:04:31.442361 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d5c7cb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cf817f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cf81820>]}
+
+
+============================== 15:04:31.446444 | 0ce111cf-c380-405d-8d30-b5383274aa0e ==============================
+[0m15:04:31.446444 [info ] [MainThread]: Running with dbt=1.11.2
+[0m15:04:31.446787 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'version_check': 'True', 'debug': 'False', 'invocation_command': 'dbt deps', 'log_cache_events': 'False', 'profiles_dir': '/Users/humbertolomeu/.dbt', 'no_print': 'None', 'printer_width': '80', 'empty': 'None', 'indirect_selection': 'eager', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'quiet': 'False', 'write_json': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'use_colors': 'True', 'warn_error': 'None', 'use_experimental_parser': 'False'}
+[0m15:04:31.447246 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/humbertolomeu/portfolio-projects/portfolio-airflow-dbt/portfolio-airflow-dbt-data-warehouse/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m15:04:31.449115 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": false, "command_wall_clock_time": 0.04973275, "process_in_blocks": "0", "process_kernel_time": 0.140135, "process_mem_max_rss": "108314624", "process_out_blocks": "0", "process_user_time": 0.729617}
+[0m15:04:31.449399 [debug] [MainThread]: Command `dbt deps` failed at 15:04:31.449352 after 0.05 seconds
+[0m15:04:31.449588 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105192de0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc64410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dcaff20>]}
+[0m15:04:31.449772 [debug] [MainThread]: Flushing usage events
+[0m15:04:31.934858 [debug] [MainThread]: An error was encountered while trying to flush usage events

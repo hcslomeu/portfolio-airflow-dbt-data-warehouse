@@ -1,0 +1,163 @@
+version: 2
+
+models:
+  # Date Dimension
+  - name: int_dim_date
+    description: "Date dimension with temporal attributes for analysis"
+    config:
+      materialized: table
+      unique_key: date_day
+    columns:
+      - name: date_day
+        description: "Date in YYYY-MM-DD format"
+        tests:
+          - not_null
+          - unique
+      - name: prior_date_day
+        description: "Previous day's date"
+      - name: next_date_day
+        description: "Next day's date"
+      - name: prior_year_date_day
+        description: "Same date in previous year"
+      - name: prior_year_over_year_date_day
+        description: "Day before the same date in previous year"
+      - name: day_of_week
+        description: "Day of week number (1-7, where 1 is Sunday)"
+      - name: day_of_week_name
+        description: "Full day of week name"
+      - name: day_of_week_name_short
+        description: "Abbreviated day of week name (3 letters)"
+      - name: day_of_month
+        description: "Day of month (1-31)"
+      - name: day_of_year
+        description: "Day of year (1-366)"
+      - name: week_start_date
+        description: "First day of week (Sunday)"
+      - name: week_end_date
+        description: "Last day of week (Saturday)"
+      - name: prior_year_week_start_date
+        description: "First day of week in previous year"
+      - name: prior_year_week_end_date
+        description: "Last day of week in previous year"
+      - name: week_of_year
+        description: "Week number of year (1-53)"
+      - name: iso_week_start_date
+        description: "First day of ISO week (Monday)"
+      - name: iso_week_end_date
+        description: "Last day of ISO week (Sunday)"
+      - name: prior_year_iso_week_start_date
+        description: "First day of ISO week in previous year"
+      - name: prior_year_iso_week_end_date
+        description: "Last day of ISO week in previous year"
+      - name: iso_week_of_year
+        description: "ISO week number of year (1-53)"
+      - name: prior_year_week_of_year
+        description: "Week number in previous year"
+      - name: prior_year_iso_week_of_year
+        description: "ISO week number in previous year"
+      - name: month_of_year
+        description: "Month number (1-12)"
+      - name: month_name
+        description: "Full month name"
+      - name: month_name_short
+        description: "Abbreviated month name (3 letters)"
+      - name: month_start_date
+        description: "First day of month"
+      - name: month_end_date
+        description: "Last day of month"
+      - name: prior_year_month_start_date
+        description: "First day of month in previous year"
+      - name: prior_year_month_end_date
+        description: "Last day of month in previous year"
+      - name: quarter_of_year
+        description: "Quarter number (1-4)"
+      - name: quarter_start_date
+        description: "First day of quarter"
+      - name: quarter_end_date
+        description: "Last day of quarter"
+      - name: year_number
+        description: "Year (e.g., 2023)"
+      - name: year_start_date
+        description: "First day of year"
+      - name: year_end_date
+        description: "Last day of year"
+      - name: dbt_updated_at
+        description: "Date/time of last dbt update"
+      - name: dbt_loaded_at
+        description: "Date/time of dbt load"
+
+  # Customers Dimension
+  - name: int_dim_customers
+    description: "Customers dimension with registration information"
+    config:
+      materialized: table
+      unique_key: sk_customer
+    columns:
+      - name: sk_customer
+        description: "Customer surrogate key"
+        tests:
+          - not_null
+          - unique
+      - name: national_insurance_number
+        description: "Customer's National Insurance Number (natural key)"
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Customer's full name"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer's email address"
+        tests:
+          - not_null
+      - name: county
+        description: "County of residence"
+        tests:
+          - not_null
+      - name: city
+        description: "City of residence"
+        tests:
+          - not_null
+      - name: date_of_birth
+        description: "Date of birth"
+        tests:
+          - not_null
+      - name: registration_date
+        description: "Customer registration date"
+        tests:
+          - not_null
+
+  # Orders Fact
+  - name: int_fact_orders
+    description: "Orders fact with sales metrics"
+    config:
+      materialized: table
+      unique_key: sk_order
+    columns:
+      - name: sk_order
+        description: "Order surrogate key"
+        tests:
+          - not_null
+          - unique
+      - name: fk_customer
+        description: "Foreign key to dim_customers"
+        tests:
+          - not_null
+      - name: order_id
+        description: "Original order ID"
+        tests:
+          - not_null
+      - name: total_order_value
+        description: "Total order value"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 1000000
+                strictly: false
+      - name: order_date
+        description: "Order date and time"
+        tests:
+          - not_null
