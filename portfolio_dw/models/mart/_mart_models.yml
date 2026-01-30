@@ -1,0 +1,134 @@
+version: 2
+
+models:
+  # Customer Metrics (marts)
+  - name: mart_customers_metrics
+    description: "Customer metrics and segmentation with RFM analysis"
+    config:
+      materialized: table
+      unique_key: sk_customer
+    columns:
+      - name: sk_customer
+        description: "Customer surrogate key"
+        tests:
+          - not_null
+          - unique
+      - name: national_insurance_number
+        description: "Customer's National Insurance Number"
+      - name: name
+        description: "Customer's full name"
+      - name: county
+        description: "Customer's county of residence"
+      - name: city
+        description: "Customer's city of residence"
+      - name: total_orders
+        description: "Total number of customer orders"
+      - name: total_spent
+        description: "Total amount spent by the customer"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 1000000
+                strictly: false
+      - name: average_ticket
+        description: "Average value of customer orders"
+      - name: first_order_date
+        description: "Date of customer's first order"
+      - name: last_order_date
+        description: "Date of customer's last order"
+      - name: first_purchase_year
+        description: "Year of customer's first purchase"
+      - name: last_purchase_year
+        description: "Year of customer's last purchase"
+      - name: total_active_years
+        description: "Number of years in which the customer made purchases"
+      - name: summer_orders
+        description: "Number of orders in summer"
+      - name: autumn_orders
+        description: "Number of orders in autumn"
+      - name: winter_orders
+        description: "Number of orders in winter"
+      - name: spring_orders
+        description: "Number of orders in spring"
+      - name: sunday_orders
+        description: "Number of orders on Sundays"
+      - name: monday_orders
+        description: "Number of orders on Mondays"
+      - name: tuesday_orders
+        description: "Number of orders on Tuesdays"
+      - name: wednesday_orders
+        description: "Number of orders on Wednesdays"
+      - name: thursday_orders
+        description: "Number of orders on Thursdays"
+      - name: friday_orders
+        description: "Number of orders on Fridays"
+      - name: saturday_orders
+        description: "Number of orders on Saturdays"
+      - name: days_since_last_order
+        description: "Days since customer's last order"
+      - name: average_frequency_days
+        description: "Average purchase frequency in days"
+      - name: average_value_per_month
+        description: "Average amount spent per month"
+      - name: average_monthly_frequency
+        description: "Average purchase frequency per month"
+      - name: rfm_segment
+        description: "Customer RFM segment (Champion, Loyal Customer, Potential, At Risk of Churn, Under Observation, Inactive)"
+      - name: value_score
+        description: "Value score (1-5) for the customer"
+      - name: recency_score
+        description: "Recency score (1-5) for the customer"
+      - name: frequency_score
+        description: "Frequency score (1-5) for the customer"
+
+  # Sales by Period (marts)
+  - name: mart_sales_by_period
+    description: "Daily sales aggregation with temporal metrics and trend analysis"
+    config:
+      materialized: table
+      unique_key: date_day
+    columns:
+      - name: date_day
+        description: "Reference date (YYYY-MM-DD)"
+        tests:
+          - not_null
+          - unique
+      - name: day_of_week
+        description: "Day of week name"
+      - name: month
+        description: "Month name"
+      - name: quarter
+        description: "Quarter number (1-4)"
+      - name: year
+        description: "Reference date year"
+      - name: total_orders
+        description: "Total number of orders for the day"
+      - name: unique_customers
+        description: "Number of unique customers who placed orders on the day"
+      - name: gross_revenue
+        description: "Gross revenue for the day"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 1000000
+                strictly: false
+      - name: average_ticket
+        description: "Average order value for the day"
+      - name: revenue_per_customer
+        description: "Average revenue per customer for the day"
+      - name: previous_day_revenue
+        description: "Previous day's gross revenue (for comparison)"
+      - name: previous_day_orders
+        description: "Previous day's order count (for comparison)"
+      - name: rolling_7d_revenue
+        description: "7-day rolling average revenue"
+      - name: previous_day_variance
+        description: "Revenue variance compared to previous day"
+      - name: daily_growth_rate
+        description: "Daily revenue growth rate (%)"
+      - name: previous_day_orders_variance
+        description: "Order count variance compared to previous day"
+      - name: daily_orders_growth_rate
+        description: "Daily order count growth rate (%)"
