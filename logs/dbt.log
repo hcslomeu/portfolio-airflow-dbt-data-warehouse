@@ -1,0 +1,46 @@
+[0m13:28:28.962899 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b3c6ed0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ba1fc50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ba1f8f0>]}
+
+
+============================== 13:28:28.966366 | 7edddb1b-8b14-4632-ab71-37c5de42c2e3 ==============================
+[0m13:28:28.966366 [info ] [MainThread]: Running with dbt=1.11.2
+[0m13:28:28.966744 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'invocation_command': 'dbt init', 'introspect': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/Users/humbertolomeu/.dbt', 'log_format': 'default', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'partial_parse': 'True', 'quiet': 'False', 'version_check': 'True', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'target_path': 'None', 'fail_fast': 'False', 'log_cache_events': 'False', 'write_json': 'True', 'log_path': 'logs', 'empty': 'None', 'use_colors': 'True'}
+[0m13:28:33.794013 [debug] [MainThread]: Starter project path: /Users/humbertolomeu/portfolio-projects/portfolio-airflow-dbt/portfolio-airflow-dbt-local-setup/.venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m13:28:33.809793 [info ] [MainThread]: 
+Your new dbt project "portfolio_dw" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:28:33.810246 [info ] [MainThread]: Setting up your profile.
+[0m13:30:16.215841 [info ] [MainThread]: Profile portfolio_dw written to /Users/humbertolomeu/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:30:16.248593 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 107.328804, "process_in_blocks": "0", "process_kernel_time": 0.195325, "process_mem_max_rss": "107954176", "process_out_blocks": "0", "process_user_time": 0.8202}
+[0m13:30:16.249928 [debug] [MainThread]: Command `dbt init` succeeded at 13:30:16.249719 after 107.33 seconds
+[0m13:30:16.251409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b9ccc50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ba51d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bae50d0>]}
+[0m13:30:16.252089 [debug] [MainThread]: Flushing usage events
+[0m13:30:16.753343 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:37:36.323559 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ce12f00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c969760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c969790>]}
+
+
+============================== 14:37:36.327832 | 7242c0ce-96d2-4728-8b02-9d9d0791f957 ==============================
+[0m14:37:36.327832 [info ] [MainThread]: Running with dbt=1.11.2
+[0m14:37:36.328213 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'static_parser': 'True', 'profiles_dir': '/Users/humbertolomeu/.dbt', 'target_path': 'None', 'empty': 'False', 'fail_fast': 'False', 'quiet': 'False', 'invocation_command': 'dbt build', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'debug': 'False', 'log_path': 'logs', 'write_json': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'indirect_selection': 'eager', 'partial_parse': 'True', 'warn_error': 'None', 'use_colors': 'True', 'no_print': 'None'}
+[0m14:37:36.328678 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/humbertolomeu/portfolio-projects/portfolio-airflow-dbt/portfolio-airflow-dbt-data-warehouse/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m14:37:36.330725 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 0.064393125, "process_in_blocks": "0", "process_kernel_time": 0.157509, "process_mem_max_rss": "105971712", "process_out_blocks": "0", "process_user_time": 0.77788}
+[0m14:37:36.331067 [debug] [MainThread]: Command `dbt build` failed at 14:37:36.331004 after 0.06 seconds
+[0m14:37:36.331339 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ce12f00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10462adb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d69bf20>]}
+[0m14:37:36.331617 [debug] [MainThread]: Flushing usage events
+[0m14:37:36.815002 [debug] [MainThread]: An error was encountered while trying to flush usage events

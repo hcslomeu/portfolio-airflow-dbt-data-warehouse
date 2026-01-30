@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: stg_register
+    description: "Staging model for the customers table. Contains clean and standardised customer data."
+    columns:
+      - name: customer_id
+        description: "Unique customer ID"
+        tests:
+          - unique
+          - not_null
+      - name: national_insurance_number
+        description: "Customer's National Insurance Number"
+        tests:
+          - not_null
+      - name: name
+        description: "Customer's full name"
+      - name: date_of_birth
+        description: "Customer's date of birth"
+      - name: gender
+        description: "Customer's gender (M/F)"
+      - name: email
+        description: "Customer's email address"
+      - name: phone
+        description: "Customer's contact phone number"
+      - name: postcode
+        description: "Customer's address postcode"
+      - name: city
+        description: "Customer's city"
+      - name: county
+        description: "Customer's county"
+      - name: country
+        description: "Customer's country"
+      - name: registration_date
+        description: "Date when the customer registered in the system"
+      - name: etl_inserted_at
+        description: "Timestamp when the data was loaded into the model"
+
+  - name: stg_orders
+    description: "Staging model for the orders table. Contains clean data and initial transformations of orders."
+    columns:
+      - name: order_id
+        description: "Unique order ID"
+        tests:
+          - unique
+          - not_null
+      - name: national_insurance_number
+        description: "National Insurance Number of the customer who placed the order"
+        tests:
+          - not_null
+      - name: order_value
+        description: "Value of order items (excluding shipping and discount)"
+      - name: shipping_cost
+        description: "Order shipping cost"
+      - name: discount_amount
+        description: "Discount amount applied to the order"
+      - name: total_order_value
+        description: "Total order value (items + shipping - discount)"
+      - name: coupon
+        description: "Coupon code used (if any)"
+      - name: has_coupon
+        description: "Indicates whether the order had a coupon applied"
+      - name: delivery_street
+        description: "Delivery address street name"
+      - name: delivery_number
+        description: "Delivery address number"
+      - name: delivery_district
+        description: "Delivery address district"
+      - name: delivery_city
+        description: "Delivery address city"
+      - name: delivery_county
+        description: "Delivery address county"
+      - name: delivery_country
+        description: "Delivery address country"
+      - name: order_status
+        description: "Current order status"
+      - name: order_date
+        description: "Date when the order was placed"
+        tests:
+          - not_null
+      - name: etl_inserted_at
+        description: "Timestamp when the data was loaded into the model"
